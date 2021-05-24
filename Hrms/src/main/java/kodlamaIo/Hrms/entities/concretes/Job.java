@@ -1,10 +1,13 @@
 package kodlamaIo.Hrms.entities.concretes;
 
+
 import javax.persistence.*;
+
+import kodlamaIo.Hrms.entities.abstracts.IEntity;
 
 	@Entity
 	@Table(name="jobs")
-	public class Job {
+	public class Job implements IEntity  {
 		@Id
 		@GeneratedValue
 		@Column(name="id")

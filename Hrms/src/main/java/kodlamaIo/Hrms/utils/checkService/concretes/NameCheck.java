@@ -1,4 +1,4 @@
-package kodlamaIo.Hrms.utils;
+package kodlamaIo.Hrms.utils.checkService.concretes;
 
 public class NameCheck {
 	

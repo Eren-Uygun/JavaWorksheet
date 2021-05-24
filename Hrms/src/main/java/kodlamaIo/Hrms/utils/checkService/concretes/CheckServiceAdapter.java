@@ -1,9 +1,10 @@
-package kodlamaIo.Hrms.utils;
+package kodlamaIo.Hrms.utils.checkService.concretes;
 
 import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.Locale;
 
+import kodlamaIo.Hrms.utils.checkService.abstracts.CheckService;
 import tr.gov.nvi.tckimlik.WS.KPSPublicSoapProxy;
 
 public class CheckServiceAdapter implements CheckService {

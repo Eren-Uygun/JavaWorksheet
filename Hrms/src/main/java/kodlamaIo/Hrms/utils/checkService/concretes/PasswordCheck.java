@@ -1,4 +1,4 @@
-package kodlamaIo.Hrms.utils;
+package kodlamaIo.Hrms.utils.checkService.concretes;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
