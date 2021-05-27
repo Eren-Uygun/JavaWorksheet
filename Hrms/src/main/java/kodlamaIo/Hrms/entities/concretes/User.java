@@ -16,21 +16,17 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "employers")
-public class Employer implements IEntity {
+@Table(name="users")
+public class User implements IEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
-	@Column(name = "company_name")
-	private String company_name;
-	@Column(name="tax_number")
-	private String tax_number;
-	@Column(name = "website")
-	private String website;
-	@Column(name="phone_number")
-	private String phone_number;
+	@Column(name = "email")
+	private String email;
+	@Column(name = "password")
+	private String password;
 	
 
 }

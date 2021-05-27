@@ -13,6 +13,17 @@ public class CheckServiceAdapter implements CheckService {
 	public boolean checkIfRealPerson(String nationalIdentityNumber, String firstName, String lastName,
 			LocalDate birthDate) {
 		
+		//Test edilmeyi kolaylaştırma açısından gerçek mernis sistemi proje üst seviyelere çıkana kadar devre dışı bırakılmıştır.
+		//Mernis doğrulaması yapılmış olarak dönecektir.
+		return true;
+	}
+
+	/*
+	 * @Override public boolean checkIfRealPerson(String nationalIdentityNumber,
+	 * String firstName, String lastName,
+	 
+			LocalDate birthDate) {
+		
 		KPSPublicSoapProxy client = new KPSPublicSoapProxy();
 		
 		boolean result = true;
@@ -29,5 +40,8 @@ public class CheckServiceAdapter implements CheckService {
 		
 		return result;
 	}
+	*/
+	
+	
 
 }
