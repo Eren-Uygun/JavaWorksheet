@@ -1,5 +1,7 @@
 package kodlamaio.Hrms.entity.concretes;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -27,6 +29,6 @@ public class JobSeeker extends User {
 	private String identityNumber;
 	
 	@Column(name = "birth_year")
-	private int birthYear;
+	private Date birthYear; //yyyy-mm-dd şeklinde girilecek.
 	
 }

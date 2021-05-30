@@ -1,5 +1,7 @@
 package kodlamaio.Hrms.entity.concretes;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 
 public class SysEmployee extends User {
@@ -14,7 +16,7 @@ public class SysEmployee extends User {
 	private String identityNumber;
 	
 	@Column(name = "birth_year")
-	private int birthYear;
+	private Date birthDate;
 	
 
 }

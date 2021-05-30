@@ -12,6 +12,7 @@ import kodlamaio.northwind.core.utilities.results.Result;
 
 
 import kodlamaio.northwind.entities.concretes.Product;
+import kodlamaio.northwind.entities.dtos.ProductWithCategoryDto;
 
 
 public interface ProductService {
@@ -45,6 +46,8 @@ public interface ProductService {
 	DataResult<List<Product>> getByProductNameEndsWith(String name);
 
 	DataResult<List<Product>> getByNameAndCategory_CategoryId(String productName, int categoryId);
+	
+	DataResult<List<ProductWithCategoryDto>>  getProductWithCategoryDetails();
 	
 
 }

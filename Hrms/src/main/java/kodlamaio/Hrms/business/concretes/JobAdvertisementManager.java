@@ -1,5 +1,6 @@
 package kodlamaio.Hrms.business.concretes;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -29,8 +30,8 @@ public class JobAdvertisementManager implements  JobAdvertisementService {
 	@Override
 	public Result add(JobAdvertisement jobAdvertisement) {
 		
-		String date = LocalDate.now().toString();
-		jobAdvertisement.setReleaseDate(date);
+
+		jobAdvertisement.setReleaseDate(LocalDate.now());
 		this.jobAdvertisementDao.save(jobAdvertisement);
 		return new SuccessResult("Data eklendi.");
 		
