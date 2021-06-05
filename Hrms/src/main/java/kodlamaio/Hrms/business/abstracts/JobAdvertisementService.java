@@ -8,13 +8,11 @@ import kodlamaio.Hrms.entity.concretes.JobAdvertisement;
 
 public interface JobAdvertisementService {
 	
-	public Result add(JobAdvertisement jobAdvertisement);
-	public DataResult<List<JobAdvertisement>> getAll();
-	public DataResult<List<JobAdvertisement>> getByIsActive();
-	public DataResult<List<JobAdvertisement>> getAllSortedByDeadline();
-	
-	public DataResult<List<JobAdvertisement>> getByEmployer_CompanyNameAndIsActive(String companyName);
-	
-	public Result update(int id , boolean isActive);
+	DataResult<List<JobAdvertisement>> getAll();
+    DataResult<List<JobAdvertisement>> getAllSorted();
+    DataResult<List<JobAdvertisement>> getAllByCompanyId(int id);
+    DataResult<List<JobAdvertisement>> getAllByCompanyName(String companyName);
 
+    Result add(JobAdvertisement jobAdvertisement);
+    Result activate(int id, boolean activationStatus);
 }

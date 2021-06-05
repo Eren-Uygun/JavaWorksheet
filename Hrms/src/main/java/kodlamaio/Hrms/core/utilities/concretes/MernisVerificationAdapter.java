@@ -5,15 +5,18 @@ import java.time.LocalDate;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.Hrms.core.utilities.abstracts.MernisVerificiationService;
+import kodlamaio.Hrms.entity.concretes.Candidate;
 
 @Service
 public class MernisVerificationAdapter implements MernisVerificiationService {
 
+	//Simule Edilecektir.
+	
 	@Override
-	public boolean mernisVerification(String firstName, String lastName, int birthYear,
-			String nationalIdentityNumber) {
-		// TODO Auto-generated method stub
+	public boolean mernisVerification(Candidate candidate) {
 		return true;
 	}
+
+
 
 }

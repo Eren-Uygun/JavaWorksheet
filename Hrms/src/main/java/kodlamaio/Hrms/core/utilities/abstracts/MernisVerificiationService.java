@@ -1,7 +1,7 @@
 package kodlamaio.Hrms.core.utilities.abstracts;
 
-import java.time.LocalDate;
+import kodlamaio.Hrms.entity.concretes.Candidate;
 
 public interface MernisVerificiationService {
-	public boolean mernisVerification(String firstName,String lastName,int birthYear,String nationalIdentityNumber);
+	public boolean mernisVerification(Candidate candidate);
 }

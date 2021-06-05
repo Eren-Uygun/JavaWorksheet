@@ -2,17 +2,16 @@ package kodlamaio.Hrms.dataAccess.abstracts;
 
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import kodlamaio.Hrms.entity.concretes.JobAdvertisement;
 
-public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement,Integer> {
+public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Integer> {
+	
+    List<JobAdvertisement> getAllByActivatedTrue();
+    List<JobAdvertisement> getAllByActivatedTrue(Sort sort);
+    List<JobAdvertisement> getAllByEmployerId(int id);
+    List<JobAdvertisement> getAllByEmployer_CompanyName(String companyName);
 
-	@Query("From JobAdvertisement where isActive = true")
-	List<JobAdvertisement> getByIsActive();
-	
-	@Query("From JobAdvertisement where employer.companyName=:companyName and isActive=true")
-	List<JobAdvertisement> getByEmployer_CompanyNameAndIsActive(String companyName);
-	
 }
