@@ -12,6 +12,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.istack.NotNull;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -31,22 +32,20 @@ public class Cv {
 	    @Column(name = "id")
 	    @ApiModelProperty(hidden = true)
 	    private int id;
-
+	  
+	  
 	    @Column(name = "description")
 	    private String description;
+	    
+	    @Column(name = "github_link")
+	    private String github;
 
-	    @Column(name = "github_address")
-	    private String githubAddress;
-
-	    @Column(name = "linkedin_address")
-	    private String linkedinAddress;
-
-	    @Column(name = "technologies")
-	    private String technologies;
-
-	    @Column(name = "cover_letter")
-	    private String coverLetter;
-
+	    @Column(name = "linkedin_link")
+	    private String linkedin;
+	    
+	    @Column(name="is_active")
+		private boolean isActive;
+	    
 	    @OneToOne(cascade = CascadeType.ALL)
 	    @JoinColumn(name = "candidate_id")
 	    @JsonIgnore()

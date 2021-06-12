@@ -40,7 +40,7 @@ public class CandidateRegisterManager implements CandidateRegisterService {
 		{
 		return new ErrorResult("Kimlik bilgileriniz doğrulanamadı.");
 		}
-		if (_credentialCheckService.checkIfRealEmailAddress(candidate.getEmail())) {
+		if (!_credentialCheckService.checkIfRealEmailAddress(candidate.getEmail())) {
 			return new ErrorResult("Mail adresiniz hatalı");
 		}
 		if (_credentialCheckService.checkIfCandidateCredentialsExists(candidate)) {
@@ -49,7 +49,7 @@ public class CandidateRegisterManager implements CandidateRegisterService {
 		if (_passwordCheckService.checkPassword(candidate.getPassword(),candidate.getPasswordRepeat())) {
 			return new ErrorResult("Şifreniz aynı olmalıdır.");
 		}
-		if (!_credentialCheckService.nullCheckCandidate(candidate)) {
+		if (_credentialCheckService.nullCheckCandidate(candidate)) {
 			return new ErrorResult("Bilgileriniz boş olmamalıdır.");
 		}
 		return new SuccessDataResult<Candidate>(_candidateDao.save(candidate),"Kayıt İşlemi Başarılı");

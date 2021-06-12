@@ -13,7 +13,6 @@ import kodlamaio.Hrms.dataAccess.abstracts.CandidateDao;
 import kodlamaio.Hrms.dataAccess.abstracts.JobExperienceDao;
 import kodlamaio.Hrms.entity.concretes.Candidate;
 import kodlamaio.Hrms.entity.concretes.JobExperience;
-import kodlamaio.Hrms.entity.dto.SortedJobExperienceWithCandidateDto;
 
 
 @Service
@@ -38,18 +37,30 @@ public class JobExperiencesManager implements JobExperienceService {
 	        _jobExperienceDao.save(jobExperience);
 	        return new SuccessDataResult<JobExperience>(jobExperience,"Succesfully added to the system.");
 	}
-/*
-	@Override
-	public DataResult<List<SortedJobExperienceWithCandidateDto>> SortedJobExperiencesWithCandidate(int candidateId) {
-		 Sort sort = Sort.by(Sort.Direction.DESC, "finishYear");
-	        return new SuccessDataResult<List<SortedJobExperienceWithCandidateDto>>
-	                (_jobExperienceDao.getSortedJobExperienceInformation(candidateId,sort), "All educations listed with sorting descending order.");
-	}
-	*/
 
 	@Override
 	public DataResult<List<JobExperience>> SortedJobExperiences(int candidateId) {
-		return new SuccessDataResult<List<JobExperience>>(_jobExperienceDao.getAllByCandidateIdOrderByFinishYearDesc(candidateId), "All educations listed with sorting descending order.");
+		return new SuccessDataResult<List<JobExperience>>(_jobExperienceDao.getAllByCandidate_id(candidateId), "All educations listed with sorting descending order.");
+	}
+
+	@Override
+	public DataResult<List<JobExperience>> getAll() {
+		return new SuccessDataResult<List<JobExperience>>(this._jobExperienceDao.findAll());
+	}
+
+	@Override
+	public DataResult<List<JobExperience>> getAllByJobSeekerId(int jobSeekerId) {
+		return new SuccessDataResult<List<JobExperience>>(this._jobExperienceDao.getAllByCandidate_id(jobSeekerId));
+	}
+
+	@Override
+	public DataResult<List<JobExperience>> getAllByJobSeekerIdOrderByDesc(int id) {
+		return new SuccessDataResult<List<JobExperience>>(this._jobExperienceDao.getAllByCandidate_idOrderByEndedDateDesc(id));
+	}
+
+	@Override
+	public DataResult<JobExperience> getById(int id) {
+		return new SuccessDataResult<JobExperience>(this._jobExperienceDao.getById(id));
 	}
 
 }

@@ -24,6 +24,9 @@ public class Employee extends User {
 
     @Column(name = "last_name")
     private String lastName;
+    
+    @Column(name="department")
+    private String department;
 
     @OneToOne(mappedBy = "employee")
     @ApiModelProperty(hidden = true)

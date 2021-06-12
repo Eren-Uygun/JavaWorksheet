@@ -6,16 +6,17 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import kodlamaio.Hrms.core.utilities.result.DataResult;
+import kodlamaio.Hrms.core.utilities.result.Result;
 import kodlamaio.Hrms.entity.concretes.Education;
-import kodlamaio.Hrms.entity.dto.SortedEducationWithCandidateDto;
 
 
 public interface EducationDao extends JpaRepository<Education, Integer> {
-	/*
-	@Query("Select new kodlamaio.northwind.entities.dto.SortedEducationWithCandidate(c.id, p.firstName,p.lastName,c.schoolName,c.finishDate) " +
-            "from Education c inner join c.candidate p where c.candidate.id =: candidateId")
-	    List<SortedEducationWithCandidateDto> getEducationInformation(int candidateId, Sort sort);
-*/
-	    List<Education> getAllByCandidateIdOrderByFinishDateDesc(int candidateId);
+	
+	Result add (Education education);	
+	Education getById(int id);
+	DataResult<List<Education>> getAll();
+	List<Education> getAllByCandidate_idOrderByEndedDateDesc(int id);
+	List<Education> getAllByCandidate_id(int id);
 
 }

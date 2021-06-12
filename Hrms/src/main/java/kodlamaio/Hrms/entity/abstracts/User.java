@@ -40,6 +40,8 @@ public class User {
 	
 	@Column(name = "password_repeat",nullable = false)
 	private String passwordRepeat;
+	
+	
 
 
 }

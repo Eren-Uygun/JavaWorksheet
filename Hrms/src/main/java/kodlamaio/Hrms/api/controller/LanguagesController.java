@@ -24,8 +24,8 @@ public class LanguagesController {
 	}
 
 	@PostMapping("/add")
-	    public Result add(@RequestBody Language language, @RequestParam int candidateId) {
-	        return _languageService.add(language, candidateId);
+	    public Result add(@RequestBody Language language) {
+	        return _languageService.add(language);
 	    }
 
 }

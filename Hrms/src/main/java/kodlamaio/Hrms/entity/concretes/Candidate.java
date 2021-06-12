@@ -1,6 +1,7 @@
 package kodlamaio.Hrms.entity.concretes;
 
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class Candidate extends User {
     private String nationalIdentityNumber;
 
     @Column(name = "birth_day")
-    private Date birthDay;
+    private LocalDate birthDay;
     
     @OneToOne(mappedBy = "candidate",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JsonIgnore()

@@ -1,9 +1,12 @@
 package kodlamaio.Hrms.business.concretes;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.Hrms.business.abstracts.LanguageService;
+import kodlamaio.Hrms.core.utilities.result.DataResult;
 import kodlamaio.Hrms.core.utilities.result.Result;
 import kodlamaio.Hrms.core.utilities.result.SuccessDataResult;
 import kodlamaio.Hrms.dataAccess.abstracts.CandidateDao;
@@ -26,12 +29,23 @@ public class LanguageManager implements LanguageService {
 	}
 
 	@Override
-	public Result add(Language language, int candidateId) {
-		 Candidate candidate = _candidateDao.findById(candidateId).get();
-	        language.setCandidate(candidate);
-	        candidate.getLanguage().add(language);
-	        _languageDao.save(language);
-	        return new SuccessDataResult<Language>(language,"Dil sisteme eklendi.");
+	public Result add(Language language) {
+		return new SuccessDataResult<Language>(_languageDao.save(language),"Yabancı Dil Eklendi");
+	}
+
+	@Override
+	public DataResult<Language> getById(int id) {
+		return new SuccessDataResult<Language>(this._languageDao.getById(id));
+	}
+
+	@Override
+	public DataResult<List<Language>> getAll() {
+		return new SuccessDataResult<List<Language>>(this._languageDao.findAll());
+	}
+
+	@Override
+	public DataResult<List<Language>> getAllByJobSeekerId(int id) {
+		return new SuccessDataResult<List<Language>>(this._languageDao.getAllByCandidate_id(id));
 	}
 
 }

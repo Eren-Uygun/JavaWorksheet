@@ -9,7 +9,7 @@ public class PasswordCheckManager implements PasswordCheckService {
 
 	@Override
 	public boolean checkPassword(String password, String password2) {
-	if (password.equals(password2)) {
+	if (password==password2) {
 		return true;
 	}
 	

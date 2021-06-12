@@ -1,0 +1,13 @@
+package kodlamaio.HumanResourcesManagementSystem.dataAccess.abstracts;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import kodlamaio.HumanResourcesManagementSystem.entities.concretes.CurriculumVitae;
+
+public interface CurriculumVitaeDao extends JpaRepository<CurriculumVitae, Integer> {
+	
+	List<CurriculumVitae> getByCandidate_id(int id);
+
+}

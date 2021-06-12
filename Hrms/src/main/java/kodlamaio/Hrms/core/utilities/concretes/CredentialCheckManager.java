@@ -58,7 +58,7 @@ public class CredentialCheckManager implements CredentialCheckService {
 
 			}
 
-			return false;
+			return true;
 	}
 
 	@Override

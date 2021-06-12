@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -34,12 +36,14 @@ public class Language {
 
     @NotNull
     @NotBlank
-    @Column(name = "language")
+    @Column(name = "languages")
     private String language;
 
     @NotNull
     @NotBlank
     @Column(name = "level")
+    @Max(value = 5)
+    @Min(value = 1)
     private int level;
 
     @ManyToOne

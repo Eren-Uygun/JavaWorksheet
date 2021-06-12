@@ -14,7 +14,6 @@ import kodlamaio.Hrms.dataAccess.abstracts.CandidateDao;
 import kodlamaio.Hrms.dataAccess.abstracts.EducationDao;
 import kodlamaio.Hrms.entity.concretes.Candidate;
 import kodlamaio.Hrms.entity.concretes.Education;
-import kodlamaio.Hrms.entity.dto.SortedEducationWithCandidateDto;
 
 @Service
 public class EducationManager implements EducationService {
@@ -30,26 +29,34 @@ public class EducationManager implements EducationService {
 	}
 
 	@Override
-	public DataResult<Education> add(Education education, int candidateId) {
-		Optional<Candidate> optional =  _candidateDao.findById(candidateId);
-        education.setCandidate(optional.get());
-        Candidate candidate = optional.get();
-        candidate.getEducations().add(education);
-        _candidateDao.save(candidate);
-        _educationDao.save(education);
-        return new SuccessDataResult<Education>(education,"Succesfully education information added");
+	public DataResult<Education> add(Education education) {
+        return new SuccessDataResult<Education>(_educationDao.save(education),"Succesfully education information added");
 	}
-/*
-	@Override
-	public DataResult<List<SortedEducationWithCandidateDto>> SortedEducationWithCandidate(int candidateId) {
-		 Sort sort = Sort.by(Sort.Direction.DESC, "finishDate");
-	        return new SuccessDataResult<List<SortedEducationWithCandidateDto>>(this._educationDao.getEducationInformation(candidateId,sort),"Sondan başa göre sıralandı.");
-	}*/
-
+	
 	@Override
 	public DataResult<List<Education>> SortedEducation(int candidateId) {
 		return new SuccessDataResult<List<Education>>
-        (this._educationDao.getAllByCandidateIdOrderByFinishDateDesc(candidateId), "Sondan başa listelendi");
+        (this._educationDao.getAllByCandidate_idOrderByEndedDateDesc(candidateId), "Sondan başa listelendi");
+	}
+
+	@Override
+	public DataResult<List<Education>> getAll() {
+		return new SuccessDataResult<List<Education>>(this._educationDao.findAll());
+	}
+
+	@Override
+	public DataResult<Education> getById(int id) {
+		return new SuccessDataResult<Education>(this._educationDao.getById(id));
+	}
+
+	@Override
+	public DataResult<List<Education>> getAllByJobseekerIdOrderByEndedDateDesc(int id) {
+		return new SuccessDataResult<List<Education>>(this._educationDao.getAllByCandidate_idOrderByEndedDateDesc(id));
+	}
+
+	@Override
+	public DataResult<List<Education>> getAllByJobSeekerId(int id) {
+		 return new SuccessDataResult<List<Education>>(this._educationDao.getAllByCandidate_id(id));
 	}
 
 }

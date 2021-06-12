@@ -37,9 +37,11 @@ public class EmployerRegisterManager implements EmployerRegisterService {
 
 	@Override
 	public Result register(Employer employer) {
+		/*
 		if (_credentialCheckService.checkIfRealEmailAddress(employer.getEmail())) {
 			return new ErrorResult("Mail adresiniz hatalı");
 		}
+		*/
 		if (_credentialCheckService.checkIfEmployerCredentialsExists(employer)) {
 			return new ErrorResult("Mail adresiniz veya Tc kimlik numaranız sistemde kayıtlı");
 		}

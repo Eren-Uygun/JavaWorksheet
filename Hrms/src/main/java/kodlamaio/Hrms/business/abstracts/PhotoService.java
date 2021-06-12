@@ -10,6 +10,9 @@ import kodlamaio.Hrms.entity.concretes.Photo;
 
 public interface PhotoService {
 	
-	    Result upload (int id,MultipartFile file);
-	    DataResult<List<Photo>> getByCandidateId(int candidateId);
+	Result add(Photo resumeImage, MultipartFile imageFile);
+	DataResult<Photo> getById(int id);	
+	DataResult<List<Photo>> getAll();
+	DataResult<Photo> getByJobSeekerId(int id);
+
 }

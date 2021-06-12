@@ -14,7 +14,6 @@ import kodlamaio.Hrms.business.abstracts.EducationService;
 import kodlamaio.Hrms.core.utilities.result.DataResult;
 import kodlamaio.Hrms.core.utilities.result.Result;
 import kodlamaio.Hrms.entity.concretes.Education;
-import kodlamaio.Hrms.entity.dto.SortedEducationWithCandidateDto;
 
 @RestController
 @RequestMapping("/api/educations")
@@ -29,13 +28,8 @@ public class EducationsController {
 	}
 
 	@PostMapping("/add")
-	    public Result add(@RequestBody Education education, @RequestParam int candidateId){
-	        return _educationService.add(education,candidateId);
+	    public Result add(@RequestBody Education education){
+	        return _educationService.add(education);
 	    }
-/*
-	    @GetMapping("/getAllByReverseSortGraduate")
-	    public DataResult<List<SortedEducationWithCandidateDto>> getAllByReverseSortGraduate(@RequestParam int candidateId){
-	        return _educationService.SortedEducationWithCandidate(candidateId);
-	    }
-*/
+
 }

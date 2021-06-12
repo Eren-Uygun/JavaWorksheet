@@ -43,6 +43,9 @@ public class JobExperience {
     @NotNull
     @NotBlank
     private Job job;
+    
+    @Column(name = "workplace")
+    private String workPlace;
 
     @Column(name = "start_year")
     @NotNull
@@ -51,5 +54,9 @@ public class JobExperience {
 
     @Column(name = "finish_year")
     private Date finishYear;
+    
+    
+    
+    
 
 }

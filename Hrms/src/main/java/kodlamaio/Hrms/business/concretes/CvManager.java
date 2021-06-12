@@ -46,17 +46,11 @@ public class CvManager implements CvService {
 	@Override
 	public DataResult<CvDto> getByCandidate_Id(int id) {
 		Candidate candidate = _candidateDao.findById(id).get();
-
         CvDto cvDto = new CvDto();
-        cvDto.setCoverLetter(candidate.getCv().getCoverLetter());
-        cvDto.setDescription(candidate.getCv().getDescription());
-        cvDto.setGithubAddress(candidate.getCv().getGithubAddress());
-        cvDto.setLinkedinAddress(candidate.getCv().getLinkedinAddress());
-        cvDto.setTechnologies(candidate.getCv().getTechnologies());
         cvDto.setCandidate(candidate);
         cvDto.setJobExperiences(_jobExperienceService.SortedJobExperiences(id).getData());
-        cvDto.setEducationList(_educationService.SortedEducation(id).getData());
-        cvDto.setLanguageList(candidate.getLanguage());
+        cvDto.setEducations(_educationService.SortedEducation(id).getData());
+        cvDto.setLanguages(candidate.getLanguage());
         return new SuccessDataResult<CvDto>(cvDto);
 	}
 
