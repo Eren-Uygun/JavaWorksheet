@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name="curriculumvitae_experiences")
+@Table(name="cv_experiences")
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "curriculumVitae" })

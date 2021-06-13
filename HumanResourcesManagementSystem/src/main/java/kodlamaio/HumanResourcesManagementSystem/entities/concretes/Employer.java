@@ -9,6 +9,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 
@@ -46,13 +47,14 @@ public class Employer extends User {
     private String telephoneNumber;
 	
 	@OneToMany(mappedBy = "employer")
+	@JsonIgnore
 	private List<JobAdvertisement> jobAdvertisement;
 	
     @OneToOne(mappedBy = "employer")
-    @ApiModelProperty(hidden = true)
+    @JsonIgnore
     private ActivationCodeEmployer activationCodeEmployer;
 
     @OneToOne(mappedBy = "employer")
-    @ApiModelProperty(hidden = true)
+    @JsonIgnore
     private EmployerActivationByEmployee employerActivationByEmployee;
 }

@@ -9,6 +9,7 @@ import kodlamaio.HumanResourcesManagementSystem.business.abstracts.CityService;
 import kodlamaio.HumanResourcesManagementSystem.core.utility.result.DataResult;
 import kodlamaio.HumanResourcesManagementSystem.core.utility.result.Result;
 import kodlamaio.HumanResourcesManagementSystem.core.utility.result.SuccessDataResult;
+import kodlamaio.HumanResourcesManagementSystem.core.utility.validation.abstracts.CredentialValidationService;
 import kodlamaio.HumanResourcesManagementSystem.dataAccess.abstracts.CityDao;
 import kodlamaio.HumanResourcesManagementSystem.entities.concretes.City;
 
@@ -16,11 +17,14 @@ import kodlamaio.HumanResourcesManagementSystem.entities.concretes.City;
 public class CityManager implements CityService {
 	
 	private CityDao _cityDao;
+	private CredentialValidationService _credentialValidation;
 
-	@Autowired
-	public CityManager(CityDao _cityDao) {
+
+
+	public CityManager(CityDao _cityDao, CredentialValidationService _credentialValidation) {
 		super();
 		this._cityDao = _cityDao;
+		this._credentialValidation = _credentialValidation;
 	}
 
 	@Override

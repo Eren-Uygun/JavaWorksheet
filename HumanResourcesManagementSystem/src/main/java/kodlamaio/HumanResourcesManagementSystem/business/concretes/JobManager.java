@@ -10,6 +10,7 @@ import kodlamaio.HumanResourcesManagementSystem.core.utility.result.DataResult;
 import kodlamaio.HumanResourcesManagementSystem.core.utility.result.ErrorDataResult;
 import kodlamaio.HumanResourcesManagementSystem.core.utility.result.Result;
 import kodlamaio.HumanResourcesManagementSystem.core.utility.result.SuccessDataResult;
+import kodlamaio.HumanResourcesManagementSystem.core.utility.validation.abstracts.CredentialValidationService;
 import kodlamaio.HumanResourcesManagementSystem.dataAccess.abstracts.JobDao;
 import kodlamaio.HumanResourcesManagementSystem.entities.concretes.Job;
 
@@ -17,11 +18,14 @@ import kodlamaio.HumanResourcesManagementSystem.entities.concretes.Job;
 public class JobManager implements JobService {
 
 	private JobDao _jobDao;
+	private CredentialValidationService _credentialValidation;
 	
-	@Autowired
-	public JobManager(JobDao _jobDao) {
+
+@Autowired
+	public JobManager(JobDao _jobDao, CredentialValidationService _credentialValidation) {
 		super();
 		this._jobDao = _jobDao;
+		this._credentialValidation = _credentialValidation;
 	}
 
 	@Override

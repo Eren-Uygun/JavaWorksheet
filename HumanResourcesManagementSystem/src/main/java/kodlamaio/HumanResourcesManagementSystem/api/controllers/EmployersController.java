@@ -2,6 +2,7 @@ package kodlamaio.HumanResourcesManagementSystem.api.controllers;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,12 @@ public class EmployersController {
 	
 	private EmployerService _employerService;
 	
+	@Autowired
+	public EmployersController(EmployerService _employerService) {
+		super();
+		this._employerService = _employerService;
+	}
+
 	@GetMapping("getall")
 	public DataResult<List<Employer>> getAll() {
 		return _employerService.getAll();

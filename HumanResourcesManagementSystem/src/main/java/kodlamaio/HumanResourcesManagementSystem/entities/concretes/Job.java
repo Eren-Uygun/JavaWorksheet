@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,6 +23,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name="jobs")
 @Data
+@Inheritance(strategy = InheritanceType.JOINED)
 @NoArgsConstructor
 @AllArgsConstructor
 public class Job {
@@ -34,7 +37,6 @@ public class Job {
     private String jobName;
     
     @OneToMany(mappedBy = "job")
-    @JsonIgnore
     private List<JobAdvertisement> jobAdvertisement;
 
 }
