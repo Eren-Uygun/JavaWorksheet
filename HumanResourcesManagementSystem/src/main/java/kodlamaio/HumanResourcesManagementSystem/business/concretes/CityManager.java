@@ -21,7 +21,7 @@ public class CityManager implements CityService {
 	private CredentialValidationService _credentialValidation;
 
 
-
+@Autowired
 	public CityManager(CityDao _cityDao, CredentialValidationService _credentialValidation) {
 		super();
 		this._cityDao = _cityDao;

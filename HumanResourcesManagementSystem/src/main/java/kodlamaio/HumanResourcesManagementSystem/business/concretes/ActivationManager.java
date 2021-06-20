@@ -65,7 +65,7 @@ public class ActivationManager implements ActivationService {
         activationCodeCandidate.setActivationCode(UUID.randomUUID().toString());
         candidate.setActivationCodeCandidate(activationCodeCandidate);
         _activationCodeCandidateDao.save(activationCodeCandidate);
-        return new SuccessDataResult<Candidate>(candidate,"Have been verified by e-mail succesfuly");
+        return new SuccessDataResult<Candidate>(candidate,"Email aktivasyonu yapıldı.");
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class ActivationManager implements ActivationService {
 	        activationCodeEmployer.setConfirmed(true);
 	        employer.setActivationCodeEmployer(activationCodeEmployer);
 	        _activationCodeEmployerDao.save(activationCodeEmployer);
-	        return new SuccessDataResult<Employer>(employer,"Has been verified by e-mail succesfuly");
+	        return new SuccessDataResult<Employer>(employer,"Email aktivasyonu yapıldı.");
 	}
 
 	@Override
