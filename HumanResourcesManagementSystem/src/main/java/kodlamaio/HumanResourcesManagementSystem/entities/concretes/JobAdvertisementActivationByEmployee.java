@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,30 +22,23 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "employer_activation_by_employess")
-public class EmployerActivationByEmployee {
+@Table(name = "job_advertisement_activation_by_employees")
+public class JobAdvertisementActivationByEmployee {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     @ApiModelProperty(hidden = true)
     private int id;
-
-    @Column(name = "confirmed_employee_id")
-    private int confirmedEmployeeId;
-
-    @Column(name = "is_confirmed")
-    private boolean isConfirmed;
-
-    @Column(name = "confirmed_date")
-    private Date confirmedDate;
-
-    @OneToOne()
+    
+    @OneToOne
+    @JoinColumn(name = "job_advertisement_id")
+    private JobAdvertisement jobAdvertisement;
+    
+    @Column(name = "is_job_advertisement_confirm")
+    private boolean isJobConfirm;
+    
+	@OneToOne()
     @JoinColumn(name = "employer_id")
     private Employer employer;
-
-    @OneToOne
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
-
 }

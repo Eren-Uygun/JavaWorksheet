@@ -1,6 +1,6 @@
 package kodlamaio.HumanResourcesManagementSystem.core.utility.validation.abstracts;
 
-public interface CredentialRuleCheck {
+public interface CredentialRuleCheckService {
 	public boolean isMailRuleOk(String email);
 	public boolean isPasswordRuleOk(String password);
 

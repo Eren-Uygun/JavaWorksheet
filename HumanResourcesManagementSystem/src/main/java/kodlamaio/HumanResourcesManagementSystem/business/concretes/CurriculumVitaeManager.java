@@ -43,7 +43,7 @@ public class CurriculumVitaeManager implements CurriculumVitaeService {
 		}
 		ImageService imageService = new ClaudinaryAdapter();
 		Map<String, String> upload = (Map<String, String>) imageService.uploadImage(file).getData();
-		result.getData().setImagePath(upload.get("url"));
+		result.getData().setPhotoLink(upload.get("url"));
 		_curriculumVitaeDao.save(result.getData());
 		return new SuccessResult("Resim yüklendi");
 	}

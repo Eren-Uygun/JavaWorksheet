@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -24,7 +26,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name="cv_foreign_languages")
+@Table(name="foreign_languages")
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","curriculumVitae"})
@@ -35,7 +37,9 @@ public class ForeignLanguage {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="language_name")
+	@Column(name="language_name",nullable = false)
+	@NotNull
+	@NotBlank
 	private String languageName;
 	
 	@Max(value = 5)
@@ -44,8 +48,7 @@ public class ForeignLanguage {
 	private int languageLevel;
 	
 	@ManyToOne
-	@JoinColumn(name = "curriculumvitae_id")
-	@JsonIgnore
+	@JoinColumn(name = "curriculum_vitae_id")
 	private CurriculumVitae curriculumVitae;
 
 }

@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.PastOrPresent;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -23,7 +24,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name="cv_educations")
+@Table(name="educations")
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","curriculumVitae"})
@@ -43,15 +44,16 @@ public class Education {
 	@Column(name = "degree")
 	private String degree;
 	
-	@Column(name = "start_date")
+	@PastOrPresent
+	@Column(name = "start_date",nullable = false)
 	private LocalDate startDate;
 	
+	@PastOrPresent
 	@Column(name = "graduate_date")
 	private LocalDate graduateDate;
 	
 	@ManyToOne
-	@JoinColumn(name = "curriculumvitae_id")
-	@JsonIgnore
+	@JoinColumn(name = "curriculum_vitae_id")
 	private CurriculumVitae curriculumVitae;
 
 }

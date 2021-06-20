@@ -1,6 +1,7 @@
 package kodlamaio.HumanResourcesManagementSystem.business.concretes;
 
 import java.util.Date;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,7 +54,7 @@ public class ActivationManager implements ActivationService {
         activationCodeCandidate.setCandidate(candidate);
         activationCodeCandidate.setConfirmedDate(new Date());
         activationCodeCandidate.setConfirmed(true);
-        activationCodeCandidate.setActivationCode("sampleCode");
+        activationCodeCandidate.setActivationCode(UUID.randomUUID().toString());
         candidate.setActivationCodeCandidate(activationCodeCandidate);
         _activationCodeCandidateDao.save(activationCodeCandidate);
         return new SuccessDataResult<Candidate>(candidate,"Have been verified by e-mail succesfuly");
@@ -65,7 +66,7 @@ public class ActivationManager implements ActivationService {
 	        ActivationCodeEmployer activationCodeEmployer = new ActivationCodeEmployer();
 	        activationCodeEmployer.setEmployer(employer);
 	        activationCodeEmployer.setConfirmedDate(new Date());
-	        activationCodeEmployer.setActivationCode("sampleCode");
+	        activationCodeEmployer.setActivationCode(UUID.randomUUID().toString());
 	        activationCodeEmployer.setConfirmed(true);
 	        employer.setActivationCodeEmployer(activationCodeEmployer);
 	        _activationCodeEmployerDao.save(activationCodeEmployer);

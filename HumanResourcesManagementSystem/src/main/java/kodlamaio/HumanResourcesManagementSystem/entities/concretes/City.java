@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -29,14 +31,16 @@ public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @ApiModelProperty(hidden = true)
     private int id;
 
-    @Column(name = "city_name")
+    @Column(name = "city_name",nullable = false)
+	@NotNull
+	@NotBlank
     private String city_name;
+    
 
+    @JsonIgnore
     @OneToMany(mappedBy = "city")
-@JsonIgnore
     private List<JobAdvertisement> jobAdvertisement;
 
 }

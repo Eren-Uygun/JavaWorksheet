@@ -14,6 +14,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -36,13 +40,17 @@ public class Experience {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
-	private int id;
+	@Column(name = "id")
+	private Integer id;
 	
-	@Column(name="workplace_name")
-	private String workplaceName;
+	@Column(name = "work_place_name", nullable = false)
+	@NotNull
+	@NotBlank
+	private String workPlaceName;
 	
-	@Column(name="position_name")
+	@Column(name = "position_name", nullable = false)
+	@NotNull
+	@NotBlank
 	private String positionName;
 	
 	@Column(name="work_description")
@@ -50,19 +58,20 @@ public class Experience {
 	
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	@Column(name="start_date")
+	@PastOrPresent
 	@CreationTimestamp 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date startDate;
 	
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	@Column(name="finish_date")
+	@FutureOrPresent
 	@CreationTimestamp     
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date finishDate;
 	
 	@ManyToOne
-	@JoinColumn(name = "curriculumvitae_id")
-	@JsonIgnore
+	@JoinColumn(name = "curriculum_vitae_id")
 	private CurriculumVitae curriculumVitae;
 
 }

@@ -32,7 +32,7 @@ public class CredentialValidationManager implements CredentialValidationService 
 				return true;
 			}
 		}
-		return false;
+		return true;
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class CredentialValidationManager implements CredentialValidationService 
 		if (password == confirmPassword) {
 			return true;
 		}
-		return false;
+		return true;
 	}
 
 	@Override

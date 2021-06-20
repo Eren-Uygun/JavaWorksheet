@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -30,29 +32,33 @@ public class CurriculumVitae {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@ApiModelProperty(hidden = true)
 	@Column(name="id")
-	private int id;
+	private Integer id;
 	
-	@ManyToOne
-	@JoinColumn(name = "candidate_id")
-	private Candidate candidate;
-
-	@Column(name = "image_path")
-	private String imagePath;
-
-	@Column(name = "github_link")
+	@Column(name="photo_link")
+	private String photoLink;
+	
+	@Column(name="github_link")
 	private String githubLink;
-
-	@Column(name = "linkedin_link")
+	
+	@Column(name="linkedin_link")
 	private String linkedinLink;
+	
+	@Column(name="description")
+	private String description;
 
 	@Column(name = "cover_letter")
 	private String coverLetter;
-
-	@Column(name = "created_date")
+	
+	@NotNull
+	@PastOrPresent
+	@Column(name = "created_date",nullable = false)
 	private LocalDate createdDate = LocalDate.now();
-
+	
+	
+@ManyToOne
+	@JoinColumn(name = "candidate_id")
+	private Candidate candidate;
 	@OneToMany(mappedBy = "curriculumVitae")
 	private List<Education> educations;
 

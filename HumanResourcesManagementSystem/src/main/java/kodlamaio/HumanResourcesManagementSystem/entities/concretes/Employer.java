@@ -57,4 +57,6 @@ public class Employer extends User {
     @OneToOne(mappedBy = "employer")
     @JsonIgnore
     private EmployerActivationByEmployee employerActivationByEmployee;
+    
+    
 }

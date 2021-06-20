@@ -10,5 +10,6 @@ public interface CityService {
 	
 	Result add(City city);
 	DataResult<List<City>> getAll();
+	DataResult<City> get(int id);
 
 }
