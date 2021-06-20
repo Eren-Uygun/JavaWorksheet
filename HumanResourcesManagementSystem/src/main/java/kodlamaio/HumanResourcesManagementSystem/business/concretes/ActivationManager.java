@@ -16,12 +16,16 @@ import kodlamaio.HumanResourcesManagementSystem.dataAccess.abstracts.CandidateDa
 import kodlamaio.HumanResourcesManagementSystem.dataAccess.abstracts.EmployeeDao;
 import kodlamaio.HumanResourcesManagementSystem.dataAccess.abstracts.EmployerActivationByEmployeeDao;
 import kodlamaio.HumanResourcesManagementSystem.dataAccess.abstracts.EmployerDao;
+import kodlamaio.HumanResourcesManagementSystem.dataAccess.abstracts.JobAdvertisementActivationByEmployeeDao;
+import kodlamaio.HumanResourcesManagementSystem.dataAccess.abstracts.JobAdvertisementDao;
 import kodlamaio.HumanResourcesManagementSystem.entities.concretes.ActivationCodeCandidate;
 import kodlamaio.HumanResourcesManagementSystem.entities.concretes.ActivationCodeEmployer;
 import kodlamaio.HumanResourcesManagementSystem.entities.concretes.Candidate;
 import kodlamaio.HumanResourcesManagementSystem.entities.concretes.Employee;
 import kodlamaio.HumanResourcesManagementSystem.entities.concretes.Employer;
 import kodlamaio.HumanResourcesManagementSystem.entities.concretes.EmployerActivationByEmployee;
+import kodlamaio.HumanResourcesManagementSystem.entities.concretes.JobAdvertisement;
+import kodlamaio.HumanResourcesManagementSystem.entities.concretes.JobAdvertisementActivationByEmployee;
 
 @Service
 public class ActivationManager implements ActivationService {
@@ -29,15 +33,18 @@ public class ActivationManager implements ActivationService {
 	private CandidateDao _candidateDao;
 	private ActivationCodeCandidateDao _activationCodeCandidateDao;
 	private ActivationCodeEmployerDao _activationCodeEmployerDao;
+	private JobAdvertisementDao _jobAdvertisementDao;
 	private EmployerDao _employerDao;
 	private EmployeeDao _employeeDao;
 	private EmployerActivationByEmployeeDao _employerActivationByEmployeeDao;
+	private JobAdvertisementActivationByEmployeeDao _jobAdvertisementActivationByEmployeeDao;
 	
 	
-	 @Autowired
+	@Autowired
 	public ActivationManager(CandidateDao _candidateDao, ActivationCodeCandidateDao _activationCodeCandidateDao,
 			ActivationCodeEmployerDao _activationCodeEmployerDao, EmployerDao _employerDao, EmployeeDao _employeeDao,
-			EmployerActivationByEmployeeDao _employerActivationByEmployeeDao) {
+			EmployerActivationByEmployeeDao _employerActivationByEmployeeDao,
+			JobAdvertisementActivationByEmployeeDao _jobAdvertisementActivationByEmployeeDao) {
 		super();
 		this._candidateDao = _candidateDao;
 		this._activationCodeCandidateDao = _activationCodeCandidateDao;
@@ -45,6 +52,7 @@ public class ActivationManager implements ActivationService {
 		this._employerDao = _employerDao;
 		this._employeeDao = _employeeDao;
 		this._employerActivationByEmployeeDao = _employerActivationByEmployeeDao;
+		this._jobAdvertisementActivationByEmployeeDao = _jobAdvertisementActivationByEmployeeDao;
 	}
 
 	@Override
@@ -83,7 +91,19 @@ public class ActivationManager implements ActivationService {
 	        employerActivationByEmployee.setEmployee(employee);
 	        employerActivationByEmployee.setEmployer(employer);
 	        _employerActivationByEmployeeDao.save(employerActivationByEmployee);
-	        return new SuccessDataResult<Employer>(employer,"Has been verified by hrms personal.");
+	        return new SuccessDataResult<Employer>(employer,"Sistem personeli tarafından onaylandı.");
+	}
+
+	@Override
+	public Result activateJobAdvertisementByEmployer(int employerId, int jobAdvertisementId) {
+		 Employer employer = _employerDao.findById(employerId).orElse(null);
+		 JobAdvertisement jobAdvertisement = _jobAdvertisementDao.findById(jobAdvertisementId).orElse(null);
+		 JobAdvertisementActivationByEmployee activationByEmployee = new JobAdvertisementActivationByEmployee();
+		 activationByEmployee.setEmployer(employer);
+		 activationByEmployee.setJobAdvertisement(jobAdvertisement);
+		 activationByEmployee.setJobConfirm(true);
+		 _jobAdvertisementActivationByEmployeeDao.save(activationByEmployee);
+		  return new SuccessDataResult<JobAdvertisement>(jobAdvertisement,"İlan sistem personeli tarafından onaylandı.");	
 	}
 
 }
